@@ -1,10 +1,12 @@
-using Nodes;
+using Plugins.BehaviourTree;
 using Plugins.Blackboard;
 using UnityEngine;
 
 
-public class BehavirNode_MoveToTarget : BehaviourNode_Move
+public class BehavirNode_MoveToTarget : BehaviourNode
 {
+    [SerializeField] 
+    private Blackboard blackboard;
     protected override void Run()
     {
         if (!blackboard.TryGetVariable(BlackboardKeys.TARGET, out Transform point) ||
@@ -13,6 +15,7 @@ public class BehavirNode_MoveToTarget : BehaviourNode_Move
             Return(false);
             return;
         }
-        coroutine = StartCoroutine(MoveToPosition(unit, point));
+        unit.MoveNavmesh(point.transform);
+        Return(true);
     }
 }

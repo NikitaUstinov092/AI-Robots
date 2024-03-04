@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 
 public sealed class Character : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public sealed class Character : MonoBehaviour
 
     [ShowInInspector, ReadOnly]
     private Vector3 moveDirection;
+
+    [SerializeField] 
+    private NavMeshAgent _navMeshAgent;
     
     [Button]
     public void Move(Vector3 direction)
@@ -19,17 +23,17 @@ public sealed class Character : MonoBehaviour
         moveDirection = direction;
     }
     
+    [Button]
+    public void MoveNavmesh(Transform direction)
+    {
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.SetDestination(direction.position);
+    }
+    
     public void Turn(Transform objectDetected)
     {
+        _navMeshAgent.isStopped = true;
         transform.LookAt(objectDetected.position);
     }
-    private void FixedUpdate()
-    {
-        if (!moveRequired) 
-            return;
-        
-        transform.position += moveSpeed * Time.fixedDeltaTime * moveDirection;
-        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        moveRequired = false;
-    }
+   
 }

@@ -1,9 +1,11 @@
-using Nodes;
+using Plugins.BehaviourTree;
 using Plugins.Blackboard;
 using UnityEngine;
 
-public class BehaviorNode_MoveToFriend : BehaviourNode_Move
+public class BehaviorNode_MoveToFriend : BehaviourNode
 {
+    [SerializeField] 
+    private Blackboard blackboard;
     protected override void Run()
     {
         if (!blackboard.TryGetVariable(BlackboardKeys.FRIEND, out Character point) ||
@@ -12,6 +14,8 @@ public class BehaviorNode_MoveToFriend : BehaviourNode_Move
             Return(false);
             return;
         }
-        coroutine = StartCoroutine(MoveToPosition(unit, point.transform));
+
+        unit.MoveNavmesh(point.transform);
+        Return(true);
     }
 }
