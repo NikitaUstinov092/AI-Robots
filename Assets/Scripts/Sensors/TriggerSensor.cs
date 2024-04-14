@@ -15,4 +15,13 @@ public class TriggerSensor : MonoBehaviour
          blackBoard.SetVariable(BlackboardKeys.OBJECT_DETECTED, transform);
       }
    }
+   
+   [Button]
+   public void ResetTrigger()
+   {
+      foreach (var blackBoard in _blackboards)
+      {
+         blackBoard.RemoveVariable(BlackboardKeys.OBJECT_DETECTED);
+      }
+   }
 }

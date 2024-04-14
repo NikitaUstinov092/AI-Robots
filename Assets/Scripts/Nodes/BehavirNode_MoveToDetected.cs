@@ -1,21 +1,22 @@
+
 using Plugins.BehaviourTree;
 using Plugins.Blackboard;
 using UnityEngine;
 
 
-public class BehavirNode_MoveToTarget : BehaviourNode
+public class BehavirNode_MoveToDetected : BehaviourNode
 {
-    [SerializeField] 
+    [SerializeField]
     private Blackboard blackboard;
     protected override void Run()
     {
-        if (!blackboard.TryGetVariable(BlackboardKeys.TARGET, out Transform point) ||
+        if (!blackboard.TryGetVariable(BlackboardKeys.OBJECT_DETECTED, out Transform point) ||
             !blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
         {
             Return(false);
             return;
         }
-        unit.MoveNavmesh(point.transform);
+        unit.Move(point.position);
         Return(true);
     }
 }

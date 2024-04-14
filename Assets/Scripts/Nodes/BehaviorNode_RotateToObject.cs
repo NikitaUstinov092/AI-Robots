@@ -7,7 +7,7 @@ using UnityEngine;
 public class BehaviorNode_RotateToObject : BehaviourNode
 {
     [SerializeField]
-    private Blackboard blackboard;
+    protected Blackboard blackboard;
     
     protected override void Run()
     {
@@ -17,7 +17,7 @@ public class BehaviorNode_RotateToObject : BehaviourNode
             return;
         }
 
-        var robot = blackboard.GetVariable<Character>(BlackboardKeys.ROBOT);
+        var robot = blackboard.GetVariable<Character>(BlackboardKeys.UNIT);
         var target = blackboard.GetVariable<Transform>(BlackboardKeys.OBJECT_DETECTED);
         
         robot.Turn(target);

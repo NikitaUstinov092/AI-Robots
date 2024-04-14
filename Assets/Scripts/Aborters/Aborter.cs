@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using Plugins.BehaviourTree;
 using Plugins.Blackboard;
 using UnityEngine;
@@ -25,11 +24,11 @@ public class Aborter : MonoBehaviour
         blackboard.OnVariableRemoved -= OnVariableChangedObjectDetected;
     }
     
-    
     private void OnVariableChangedObjectDetected(string name, object value)
     {
         if (name != BlackboardKeys.OBJECT_DETECTED) 
             return;
+        Debug.Log("DETECTED");
         rootNode.Abort();
        
     }

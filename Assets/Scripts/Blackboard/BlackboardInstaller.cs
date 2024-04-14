@@ -8,10 +8,11 @@ using UnityEngine;
         private Character unit;
         [SerializeField] 
         private Character friend;
+        
         private void Awake()
         {
             var blackboard = GetComponent<Blackboard>();
-            blackboard.SetVariable(BlackboardKeys.ROBOT, unit);
+            blackboard.SetVariable(BlackboardKeys.UNIT, unit);
             blackboard.SetVariable(BlackboardKeys.FRIEND, friend);
             blackboard.SetVariable(BlackboardKeys.REQUIRED_DISTANCE, 2);
         }
