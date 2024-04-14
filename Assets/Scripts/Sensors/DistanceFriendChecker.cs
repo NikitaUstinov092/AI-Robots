@@ -14,8 +14,8 @@ public class DistanceFriendChecker : MonoBehaviour
 
     private void Update()
     {
-        if (!_blackboardCurrentUnit.TryGetVariable<Character>( BlackboardKeys.ROBOT,out var robot1) ||
-            !_blackboardFriendUnit.TryGetVariable<Character>(BlackboardKeys.ROBOT, out var robot2) ||
+        if (!_blackboardCurrentUnit.TryGetVariable<Character>( BlackboardKeys.UNIT,out var robot1) ||
+            !_blackboardFriendUnit.TryGetVariable<Character>(BlackboardKeys.UNIT, out var robot2) ||
             !_blackboardFriendUnit.TryGetVariable<int>(BlackboardKeys.REQUIRED_DISTANCE, out var distance))
         {
             return;

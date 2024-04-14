@@ -40,7 +40,7 @@ namespace Nodes
                     yield break;
                 }
 
-                Vector3 distanceVector = targetPosition - unitPosition;
+                var distanceVector = targetPosition - unitPosition;
 
                 var stoppingDistance = blackboard.GetVariable<int>(BlackboardKeys.REQUIRED_DISTANCE);
                 if (distanceVector.magnitude <= stoppingDistance)
@@ -48,7 +48,7 @@ namespace Nodes
                     break;
                 }
 
-                Vector3 direction = distanceVector.normalized;
+                var direction = distanceVector.normalized;
                 unit.Move(direction);
                 yield return period;
             }
