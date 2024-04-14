@@ -28,7 +28,7 @@ public class PatrolPointsSensor : MonoBehaviour
         // Проверяем расстояние между персонажем и текущей точкой
         float distance = Vector3.Distance(_character.position, currentPoint.position);
         
-        if (distance < 2f)
+        if (distance < _blackboard.GetVariable<int>(BlackboardKeys.REQUIRED_DISTANCE))
         {
             // Выбираем рандомную точку, которая не является текущей точкой
             Transform newPoint = currentPoint;

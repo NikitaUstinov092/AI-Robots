@@ -15,7 +15,6 @@ public class BehaviorNode_MoveToPoint : BehaviourNode_Move
         }
         unit.Move(point.position);
         Return(true);
-        //coroutine = StartCoroutine(MoveToPosition(unit, point));
     }
     
 }

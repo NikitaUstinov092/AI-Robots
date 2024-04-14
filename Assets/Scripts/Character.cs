@@ -6,12 +6,6 @@ public sealed class Character : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 5.0f;
-
-    [ShowInInspector, ReadOnly]
-    private bool moveRequired;
-
-    [ShowInInspector, ReadOnly]
-    private Vector3 moveDirection;
     
     [SerializeField]
     private NavMeshAgent navMeshAgent;
@@ -24,7 +18,6 @@ public sealed class Character : MonoBehaviour
     public void Move(Vector3 direction)
     {
         navMeshAgent.speed = moveSpeed;
-        moveDirection = direction;
         animator.SetInteger(State, 1);
         navMeshAgent.SetDestination(direction);
         Turn(direction);
