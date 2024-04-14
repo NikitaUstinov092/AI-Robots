@@ -15,7 +15,7 @@ public class BehaviorNode_MoveToFriend : BehaviourNode
             return;
         }
 
-        unit.MoveNavmesh(point.transform);
+        unit.Move(point.transform.position);
         Return(true);
     }
 }

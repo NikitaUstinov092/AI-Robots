@@ -15,7 +15,7 @@ public class BehavirNode_MoveToTarget : BehaviourNode
             Return(false);
             return;
         }
-        unit.MoveNavmesh(point.transform);
+        unit.Move(point.transform.position);
         Return(true);
     }
 }
