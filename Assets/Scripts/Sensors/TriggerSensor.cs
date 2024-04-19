@@ -5,23 +5,27 @@ using UnityEngine;
 public class TriggerSensor : MonoBehaviour
 {
    [SerializeField]
-   private Blackboard[] _blackboards;
+   private Blackboard blackboard;
+   
+   private void OnTriggerEnter(Collider other)
+   { 
+      HandleTrigger(other.transform);
+   }
+   
+   private void OnTriggerExit(Collider other)
+   {
+      ResetTrigger();
+   }
    
    [Button]
-   public void HandleTrigger()
+   public void HandleTrigger(Transform target)
    {
-      foreach (var blackBoard in _blackboards)
-      {
-         blackBoard.SetVariable(BlackboardKeys.OBJECT_DETECTED, transform);
-      }
+      blackboard.SetVariable(BlackboardKeys.OBJECT_DETECTED, target);
    }
    
    [Button]
    public void ResetTrigger()
    {
-      foreach (var blackBoard in _blackboards)
-      {
-         blackBoard.RemoveVariable(BlackboardKeys.OBJECT_DETECTED);
-      }
+      blackboard.RemoveVariable(BlackboardKeys.OBJECT_DETECTED);
    }
 }

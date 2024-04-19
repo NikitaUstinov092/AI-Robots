@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamagable
 {
+   public event Action OnDeath;
+   
    [SerializeField]
    private float health;
 
@@ -12,9 +15,10 @@ public class PlayerHealth : MonoBehaviour, IDamagable
          health -= damage;
       }
 
-      if (health < 0)
+      if (health <= 0)
       {
          health = 0;
+         OnDeath?.Invoke();
       }
    }
 }
